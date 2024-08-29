@@ -10,9 +10,8 @@ def crop_to_passport_size(image, face_rect):
     center_x, center_y = x + w // 2, y + h // 2
 
     # Double the width and height
-    new_w = int(w * 2.5)
-    new_h =int(h * 2.5
-)
+    new_w = int(w * 2.3)
+    new_h =int(h * 2.3)
     # Adjust new width and height to maintain the passport aspect ratio
     if new_w / new_h > passport_aspect_ratio:
         new_w = int(new_h * passport_aspect_ratio)
@@ -21,7 +20,7 @@ def crop_to_passport_size(image, face_rect):
 
     # Calculate the new cropping coordinates
     x1 = max(0, center_x - new_w // 2)
-    y1 = max(0, center_y - new_h // 2)
+    y1 = max(0, center_y - new_h*10 // 22)
     x2 = min(image.shape[1], center_x + new_w // 2)
     y2 = min(image.shape[0], center_y + new_h // 2)
 

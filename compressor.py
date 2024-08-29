@@ -1,6 +1,6 @@
 import cv2
 
-def save_image_with_size_limit(image_array, file_path, size_threshold_kb, max_attempts=10):
+def save_image_with_size_limit(image_array, file_path, size_threshold_kb, max_attempts=100):
     """
     Save an image to a file with a size under a specified threshold.
 
@@ -20,6 +20,7 @@ def save_image_with_size_limit(image_array, file_path, size_threshold_kb, max_at
 
         # Check the size of the buffer
         file_size_kb = len(buffer) / 1024
+        print(file_size_kb)
 
         if file_size_kb <= size_threshold_kb:
             # If the size is under the threshold, save the file
@@ -31,8 +32,8 @@ def save_image_with_size_limit(image_array, file_path, size_threshold_kb, max_at
         # If the file size is too large, reduce the quality
         quality -= 10
 
-        if quality < 10:  # Prevent quality from going too low
-            break
+        # if quality < 10:  # Prevent quality from going too low
+        #     break
 
     if not success:
         raise ValueError(f"Could not reduce image size under {size_threshold_kb} KB after {max_attempts} attempts.")
